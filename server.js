@@ -20,6 +20,8 @@ app.use(bodyParser.urlencoded({
 
 app.set('viev engine', 'ejs');
 
+app.use('/assets',express.static('assets'))
+
 app.use(session({
   secret : 'justasecret',
   resave : 'true',

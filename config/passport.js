@@ -15,7 +15,7 @@ module.exports = function(passport) {
   passport.deserializeUser(function(id, done){
     connection.query("SELECT * FROM users WHERE id = ? ", [id] ,
       function(err, rows){
-        done(err,rows[0]);
+        done(null,rows[0]);
       });
   });
 
@@ -27,6 +27,8 @@ module.exports = function(passport) {
       passReqToCallback : true
     },
   function(req, username, password, done){
+    var universityid = req.body.universityid;
+    var cnp = req.body.cnp;
     connection.query("SELECT * FROM users WHERE username = ? ",
       [username], function(err, rows){
         if(err)
@@ -34,19 +36,37 @@ module.exports = function(passport) {
         if(rows.length){
           return done(null, false, req.flash('signupMessage', 'That is already taken'));
         }else{
-          var newUserMysql = {
-            username : username,
-            password : bcrypt.hashSync(password, null, null)
-          };
+            connection.query("SELECT * FROM acceptedstudents WHERE universityid = ?", [universityid], function(err, rows){
+              if(err)
+                return done(err);
+              if(rows.length){
+                var newUserMysql = {
+                  username : username,
+                  password : bcrypt.hashSync(password, null, null),
+                  cnp : cnp,
+                  universityid : universityid
+                };
 
-          var insertQuery = "INSERT INTO users (username, password) values (?, ?)";
+                var insertQuery = "INSERT INTO users (username, password) values (?, ?)";
+                var insertQueryStudents = "INSERT INTO students (username, password, cnp, universityid) values (?, ?, ?, ?)";
 
-          connection.query(insertQuery, [newUserMysql.username, newUserMysql.password],
-           function(err, rows){
-            newUserMysql.id = rows.insertId;
+                connection.query(insertQueryStudents,[newUserMysql.username, newUserMysql.password, newUserMysql.cnp, newUserMysql.universityid],
+                function(err, rows){
+                  newUserMysql.id = rows.insertId;
 
-            return done(null, newUserMysql);
-           });
+                  return done(null, newUserMysql);
+                });
+
+                connection.query(insertQuery, [newUserMysql.username, newUserMysql.password],
+                 function(err, rows){
+                  newUserMysql.id = rows.insertId;
+
+                  return done(null, newUserMysql);
+                 });
+              }else {
+                return done(null, false, req.flash('signupMessage', 'This student id is not accepted' + username + password + cnp + universityid));
+              }
+            });
          }
         });
        })

@@ -5,5 +5,5 @@ module.exports ={
     'password':''
   },
   'database':'teamproject',
-  'user-table':'users'
+  //'user-table':'users'
 }
