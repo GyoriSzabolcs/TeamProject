@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>indexAdmin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" media="all" id="css" href="../assets/layoutAdmin.css">
+
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#bye">Sign Out</a>
+  </div>
+
+<div class="sidenav">
+  <a href="indexAdmin.ejs">Home</a>
+  <a href="listStudents.ejs">List of  students</a>
+  <a href="addStudent.ejs">Add student</a>
+  <a href="removeStudent.ejs">Remove student</a>
+  <a href="manageRequests.html">Manage requests</a>
+  <a href="anouncements&events.html">Anouncements & Events</a>
+</div>
+
+<div class="main">
+  <div class="limiter">
+    <div class="container-table100">
+      <div class="wrap-table100">
+        <table class="table" >
+          <tr class="row header">
+            <th class="cell"> No.</th>
+            <th class="cell">CNP</th>
+            <th class="cell">First name</th>
+            <th class="cell">Last name</th>
+            <th class="cell">Faculty</th>
+            <th class="cell">Faculty Code</th>
+          </tr>
+          <%if(data.length){
+          for(var i = 0; i < data.length; i++){ %>
+          <tr class="row">
+            <td class="cell"><%=(i+1)%></td>
+            <td class="cell"><%=data[i].CNP%></td>
+            <td class="cell"><%=data[i].fName%></td>
+            <td class="cell"><%=data[i].lName%></td>
+            <td class="cell"><%=data[i].faculty%></td>
+            <td class="cell"><%=data[i].facCode%></td>
+          </tr>
+          <% }
+          } else { %>
+            <tr class="row">
+              <td class="cell">No user</td>
+            </tr>
+          <% } %>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,52 +1,69 @@
-module.exports = function(app, passport) {
+const dbstuff = require('../config/adminEntry.js');
 
-  app.get('/', function(req, res){
-    res.render('index.ejs');
-  });
+module.exports = function (app, passport) {
 
-  app.get('/login', function(req, res){
-    res.render('login.ejs', {message:req.flash('loginMessage')});
-  });
+    app.get('/', function (req, res) {
+        res.render('index.ejs');
+    });
 
-  app.post('/login', passport.authenticate('local-login', {
-    successRedirect : '/profile',
-    failureRedirect : '/login',
-    failureFlash : true
-  }),
-    function(req, res){
-      if(req.body.remember){
-        req.session.cookie.maxAge = 1000 * 60 * 3;
-      }else{
-        req.session.cookie.expires = false;
-      }
-      res.redirect('/');
-    })
+    app.get('/login', function (req, res) {
+        res.render('login.ejs', {message: req.flash('loginMessage')});
+    });
 
-    app.get('/signup', function(req, res){
-      res.render('signup.ejs', {message: req.flash('signupMessage')});
+    app.post('/login', passport.authenticate('local-login', {
+            successRedirect: '/profile',
+            failureRedirect: '/login',
+            failureFlash: true
+        }),
+        function (req, res) {
+            if (req.body.remember) {
+                req.session.cookie.maxAge = 1000 * 60 * 3;
+            } else {
+                req.session.cookie.expires = false;
+            }
+            res.redirect('/');
+        });
+
+    app.get('/signup', function (req, res) {
+        res.render('signup.ejs', {message: req.flash('signupMessage')});
     });
 
     app.post('/signup', passport.authenticate('local-signup', {
-      successRedirect : '/profile',
-      failureRedirect : '/signup',
-      failureFlash : true
+        successRedirect: '/profile',
+        failureRedirect: '/signup',
+        failureFlash: true
     }));
 
-    app.get('/profile', isLoggedIn, function(req, res){
-      res.render('profile.ejs', {
-        user:req.user
-      });
+    app.get('/profile', isLoggedIn, function (req, res) {
+        res.render('profile.ejs', {
+            user: req.user
+        });
     });
 
-    app.get('/logout', function(req, res){
-      req.logout();
-      res.redirect('/');
-});
+    app.get('/logout', function (req, res) {
+        req.logout();
+        res.redirect('/');
+    });
+    /*###################################*/
+    app.get('/addStudent.ejs', function (req, res) {
+        res.render('addStudent.ejs');
+    });
+    app.post('/addStudent', dbstuff.dbInsert);
+    app.get('/removeStudent.ejs', function (req, res) {
+        res.render('removeStudent.ejs');
+    });
+    app.post('/removeStudent', dbstuff.dbRemove);
+
+    app.get('/indexAdmin.ejs', function (req, res) {
+        res.render('indexAdmin.ejs');
+    });
+    app.get('/listStudents.ejs', dbstuff.displayTable);
+
 }
 
-function isLoggedIn(req, res, next){
-  if(req.isAuthenticated())
-    return next();
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated())
+        return next();
 
-  res.redirect('/');
+    res.redirect('/');
 }

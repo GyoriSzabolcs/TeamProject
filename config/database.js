@@ -2,8 +2,8 @@ module.exports ={
   'connection' :{
     'host':'localhost',
     'user':'root',
-    'password':''
+    'password':'1234'
   },
-  'database':'teamproject',
+  'database':'dormadmin',
   //'user-table':'users'
 }

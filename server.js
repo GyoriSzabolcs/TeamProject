@@ -10,7 +10,6 @@ var passport = require('passport');
 var flash = require('connect-flash');
 
 require('./config/passport')(passport);
-
 app.use(flash());
 app.use(morgan('dev'));
 app.use(cookieParser());
@@ -18,9 +17,9 @@ app.use(bodyParser.urlencoded({
   extended : true
 }));
 
-app.set('viev engine', 'ejs');
+app.set('view engine', 'ejs');
 
-app.use('/assets',express.static('assets'))
+app.use('/assets',express.static('assets'));
 
 app.use(session({
   secret : 'justasecret',

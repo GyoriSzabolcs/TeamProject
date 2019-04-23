@@ -2,7 +2,7 @@
   "name": "team-project",
   "main": "server.js",
   "scripts": {
-    "start": "node ./server"
+    "start": "./node_modules/.bin/nodemon ./server.js"
   },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
@@ -12,10 +12,15 @@
     "ejs": "^2.3.2",
     "express": "^4.13.0",
     "express-session": "^1.11.3",
+    "express-validator": "^5.3.1",
     "flash": "^1.1.0",
     "morgan": "^1.6.0",
     "mysql": "^2.16.0",
     "passport": "^0.4.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "req-flash": "0.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.11"
   }
 }
