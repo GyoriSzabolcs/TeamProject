@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 27, 2019 at 05:05 PM
+-- Generation Time: Apr 27, 2019 at 05:09 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.4
 
@@ -41,6 +41,85 @@ CREATE TABLE `login` (
 INSERT INTO `login` (`username`, `pass`, `email`) VALUES
 ('raul123', '1234', 'abc@gmail.com'),
 ('Thomas13', '8426', 'thomas.g@gmail.com');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `messages`
+--
+
+CREATE TABLE `messages` (
+  `ID` int(11) NOT NULL,
+  `fName` varchar(30) NOT NULL,
+  `lName` varchar(30) NOT NULL,
+  `facCode` varchar(30) NOT NULL,
+  `msg` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rooms`
+--
+
+CREATE TABLE `rooms` (
+  `ID` int(10) NOT NULL,
+  `floor` int(10) NOT NULL,
+  `currCapacity` int(10) NOT NULL,
+  `maxCapacity` int(10) NOT NULL,
+  `comments` text
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `rooms`
+--
+
+INSERT INTO `rooms` (`ID`, `floor`, `currCapacity`, `maxCapacity`, `comments`) VALUES
+(1, 0, 0, 4, NULL),
+(2, 0, 0, 4, NULL),
+(3, 0, 0, 4, NULL),
+(4, 0, 0, 4, NULL),
+(5, 0, 0, 4, NULL),
+(6, 0, 0, 4, NULL),
+(7, 0, 0, 3, NULL),
+(8, 0, 0, 3, NULL),
+(9, 0, 0, 3, NULL),
+(10, 0, 0, 3, NULL),
+(11, 0, 0, 2, NULL),
+(12, 0, 0, 2, NULL),
+(13, 0, 0, 2, NULL),
+(14, 0, 0, 2, NULL),
+(15, 0, 0, 2, NULL),
+(101, 1, 0, 4, NULL),
+(102, 1, 0, 4, NULL),
+(103, 1, 1, 4, NULL),
+(104, 1, 0, 4, NULL),
+(105, 1, 0, 4, NULL),
+(106, 1, 0, 4, NULL),
+(107, 1, 0, 3, NULL),
+(108, 1, 0, 3, NULL),
+(109, 1, 1, 3, NULL),
+(110, 1, 0, 3, NULL),
+(111, 1, 0, 2, NULL),
+(112, 1, 0, 2, NULL),
+(113, 1, 0, 2, NULL),
+(114, 1, 0, 2, NULL),
+(115, 1, 0, 2, NULL),
+(201, 2, 0, 4, NULL),
+(202, 2, 0, 4, NULL),
+(203, 2, 0, 4, NULL),
+(204, 2, 0, 4, NULL),
+(205, 2, 0, 4, NULL),
+(206, 2, 0, 4, NULL),
+(207, 2, 0, 3, NULL),
+(208, 2, 0, 3, NULL),
+(209, 2, 0, 3, NULL),
+(210, 2, 0, 3, NULL),
+(211, 2, 0, 2, NULL),
+(212, 2, 0, 2, NULL),
+(213, 2, 0, 2, NULL),
+(214, 2, 0, 2, NULL),
+(215, 2, 0, 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -107,6 +186,18 @@ ALTER TABLE `login`
   ADD PRIMARY KEY (`username`);
 
 --
+-- Indexes for table `messages`
+--
+ALTER TABLE `messages`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `rooms`
+--
+ALTER TABLE `rooms`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `students`
 --
 ALTER TABLE `students`
@@ -119,6 +210,16 @@ ALTER TABLE `students`
 ALTER TABLE `users`
   ADD KEY `users_cnp_constraint` (`CNP`),
   ADD KEY `users_username_constraint` (`username`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `messages`
+--
+ALTER TABLE `messages`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
