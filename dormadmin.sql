@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 03, 2019 at 10:10 PM
+-- Generation Time: Apr 27, 2019 at 05:05 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.4
 
@@ -39,10 +39,8 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`username`, `pass`, `email`) VALUES
-('adiminune', 'adiaditzu', 'maneleeviata@yahoo.com'),
-('gratzzie', 'abcd1234', 'spaghetii@hotmail.com'),
-('marius23', 'anaaremere', 'marius.nume@gmail.com'),
-('username1', 'ijdsa656', 'llalalla@gmail.com');
+('raul123', '1234', 'abc@gmail.com'),
+('Thomas13', '8426', 'thomas.g@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -63,14 +61,16 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`CNP`, `fName`, `lName`, `faculty`, `facCode`) VALUES
-('1940330254653', 'Raul', 'Andreescu', 'Sociology-Psychology', 'SP222'),
-('1960425856325', 'Alex', 'Dorin', 'Mathematics-Informatics', 'IE456'),
-('1970303524476', 'Alex', 'Marin', 'History', 'HI356'),
-('1990213350047', 'Thomas', 'Gurtler', 'Mathematics-Informatics', 'IE945'),
-('1990614302515', 'Marius', 'Stanescu', 'Literature', 'LT634'),
-('2971122685326', 'Daniela', 'Carici', 'Literature', 'LT888'),
-('2981028345876', 'Andreea', 'Manea', 'Literature', 'LT685'),
-('2990202625342', 'Maria', 'Grigore', 'Geography', 'GE369');
+('1930230253536', 'Raul', 'Borza', 'Geography', 'GE025'),
+('1950718023521', 'Andrei', 'Cozma', 'ComputerScience', 'IE301'),
+('1961010365262', 'Mihai', 'Georgescu', 'Physics', 'PH111'),
+('1970228136529', 'Edwin', 'Vicze', 'ComputerScience', 'IE300'),
+('1980325475458', 'George', 'Preda', 'History', 'HI285'),
+('1990213350047', 'Thomas', 'Gurtler', 'ComputerScience', 'IE945'),
+('2000630452152', 'Angela', 'Roibu', 'Literature', 'LT370'),
+('2960915258744', 'Andreea', 'Borza', 'Mathematics', 'MI785'),
+('2990202352698', 'Raluca', 'Birca', 'Biology', 'BG475'),
+('2990702359865', 'Maria', 'Apreutesii', 'Literature', 'LT336');
 
 -- --------------------------------------------------------
 
@@ -93,10 +93,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`CNP`, `username`, `enrollDate`, `nextPaymentDate`, `nextPaymentSum`, `roomNumber`, `details`) VALUES
-('1990614302515', 'marius23', '2019-04-03', NULL, 200, 7, NULL),
-('2971122685326', 'gratzzie', '2019-04-03', NULL, 230, 22, NULL),
-('1970303524476', 'adiminune', '2019-04-03', NULL, 250, 13, NULL),
-('1940330254653', 'username1', '2019-04-03', NULL, 200, 7, NULL);
+('1930230253536', 'raul123', '2019-04-16', '2019-05-22', 200, 103, NULL),
+('1990213350047', 'Thomas13', '2019-04-01', '2019-05-01', 250, 109, 'asjdhkjafkjasgjkahgwahh');
 
 --
 -- Indexes for dumped tables
@@ -119,8 +117,8 @@ ALTER TABLE `students`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD KEY `username` (`username`),
-  ADD KEY `CNP` (`CNP`);
+  ADD KEY `users_cnp_constraint` (`CNP`),
+  ADD KEY `users_username_constraint` (`username`);
 
 --
 -- Constraints for dumped tables
@@ -130,8 +128,8 @@ ALTER TABLE `users`
 -- Constraints for table `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `users_ibfk_2` FOREIGN KEY (`username`) REFERENCES `login` (`username`),
-  ADD CONSTRAINT `users_ibfk_3` FOREIGN KEY (`CNP`) REFERENCES `students` (`CNP`);
+  ADD CONSTRAINT `users_cnp_constraint` FOREIGN KEY (`CNP`) REFERENCES `students` (`CNP`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `users_username_constraint` FOREIGN KEY (`username`) REFERENCES `login` (`username`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
