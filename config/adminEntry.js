@@ -116,7 +116,9 @@ exports.dbInsert = function(req, res){
     });
 };
 exports.displayTable = function(req, res) {
-    var query = conn.query("SELECT * FROM students", function (err, rows) {
+    conn.query("SELECT students.*, users.username, users.enrollDate, " +
+        "users.nextPaymentDate, users.nextPaymentSum, users.roomNumber, users.details FROM students LEFT JOIN users ON students.CNP = users.CNP",
+        function (err, rows) {
         if(err)
             console.log("Error displaying from table: students");
         res.render('listStudents', {page_title:"List Students", data: rows});

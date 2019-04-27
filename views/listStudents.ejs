@@ -36,19 +36,28 @@
           </tr>
           <%if(data.length){
           for(var i = 0; i < data.length; i++){ %>
-          <tr class="row">
-            <td class="cell"><%=(i+1)%></td>
+          <tr class="row" style="cursor:pointer" onclick="myFunction(<%=i%>)" class="dropButton">
+            <td class="cell" id="number"><%=(i+1)%></td>
             <td class="cell"><%=data[i].CNP%></td>
             <td class="cell"><%=data[i].fName%></td>
             <td class="cell"><%=data[i].lName%></td>
             <td class="cell"><%=data[i].faculty%></td>
             <td class="cell"><%=data[i].facCode%></td>
+            <tr id="myDropdown" class="dropContent">
+              <td>Username: <%=data[i].username%></td>
+              <td>Enrollment date:<%=data[i].enrollDate%></td>
+              <td>Next payment date: <%=data[i].nextPaymentDate%></td>
+              <td>Next payment sum: <%=data[i].nextPaymentSum%></td>
+              <td>Room Number: <%=data[i].roomNumber%></td>
+              <td>Details: <%=data[i].details%></td>
+            </tr>
           </tr>
           <% }
           } else { %>
             <tr class="row">
               <td class="cell">No user</td>
             </tr>
+
           <% } %>
         </table>
       </div>
@@ -57,6 +66,23 @@
   </div>
 
 </div>
-
+<script>
+  function myFunction(x){
+    document.getElementsByClassName("dropContent")[x].classList.toggle("show");
+  }
+  // Close the dropdown menu if the user clicks outside of it
+  window.onclick = function(event) {
+    if (!event.target.matches('.dropButton')) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
+  }
+</script>
 </body>
 </html>
