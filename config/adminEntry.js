@@ -124,3 +124,44 @@ exports.displayTable = function(req, res) {
         res.render('listStudents', {page_title:"List Students", data: rows});
     });
 }
+
+exports.getMessages = function (req, res) {
+    conn.query("SELECT * FROM messages ORDER BY answered ASC, type", (err, rows) => {
+        if(err)
+            console.log("Error displaying from table: messages");
+        res.render('manageRequests',{page_title:"Manage Requests", data:rows});
+    })
+}
+exports.addResponse = function (req, res) {
+    const text = req.body.resp;
+    const type = req.body.type;
+    const fName = req.body.fName;
+    const lName = req.body.lName;
+    const facCode = req.body.facCode;
+    console.log(text + " " + fName + " " + lName + " " + facCode);
+    conn.query("UPDATE messages SET response = ?, answered = 1 WHERE fName = ? AND lName = ? AND facCode = ? AND type = ?",
+        [text, fName, lName, facCode, type], (err, rows) => {
+        if(err){
+            console.log("Error updating table: messages");
+            console.log(err);
+        }
+        else
+            res.redirect('/manageRequests.ejs');
+    })
+}
+exports.removeMsg = function (req, res) {
+    const type = req.body.type;
+    const fName = req.body.fName;
+    const lName = req.body.lName;
+    const facCode = req.body.facCode;
+    console.log( fName + " " + lName + " " + facCode);
+    conn.query("DELETE FROM messages WHERE fName = ? AND lName = ? AND facCode = ? AND type = ?",
+        [ fName, lName, facCode, type], (err, rows) => {
+            if(err){
+                console.log("Error removing from table: messages");
+                console.log(err);
+            }
+            else
+                res.redirect('/manageRequests.ejs');
+        })
+}

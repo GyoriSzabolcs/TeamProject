@@ -58,7 +58,9 @@ module.exports = function (app, passport) {
         res.render('indexAdmin.ejs');
     });
     app.get('/listStudents.ejs', dbstuff.displayTable);
-
+    app.get('/manageRequests.ejs', dbstuff.getMessages);
+    app.post('/manageRequests', dbstuff.addResponse);
+    app.post('/removeMsg', dbstuff.removeMsg);
 }
 
 function isLoggedIn(req, res, next) {

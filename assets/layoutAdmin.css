@@ -357,5 +357,41 @@ body {
 	display: inline-block;
 }
 
+/*MANAGE REQUESTS*/
+ol {
+  list-style:none;
+  counter-reset:mycounter;
+  padding:0;
+}
 
-.show {display: inline-block;}
+ol li {
+  position:relative;
+  margin-left: 30px;
+  padding:5px 0;
+}
+
+ol li:before {
+  content:counter(mycounter);
+  counter-increment:mycounter;
+  position:absolute;
+  top:0;
+  left:-30px;
+  width:25px;
+  height:25px;
+  line-height:25px;
+  border-radius:50%;
+  color:#F2EADF;
+  background:#28474A;
+  text-align:center;
+}
+
+.au {
+  border:1px solid #ccc;
+  background:#F2EADF;
+  border-radius:10px;
+  box-shadow:2px 2px 2px #888;
+  padding:10px;
+}
+.hiddenForm{
+	display: none;
+}

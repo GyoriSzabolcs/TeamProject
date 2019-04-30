@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>indexAdmin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="all" id="css" href="../assets/layoutAdmin.css">
+
+</head>
+<body>
+
+<div class="topbar">
+    <a href="#bye">Sign Out</a>
+</div>
+
+<div class="sidenav">
+    <a href="indexAdmin.ejs">Home</a>
+    <a href="listStudents.ejs">List of  students</a>
+    <a href="addStudent.ejs">Add student</a>
+    <a href="removeStudent.ejs">Remove student</a>
+    <a href="manageRequests.ejs">Manage requests</a>
+    <a href="anouncements&events.html">Anouncements & Events</a>
+</div>
+
+<div class="main">
+    <p>Unanswered</p>
+    <%if(data.length){
+    for(var i = 0; i < data.length; i++){
+    if(data[i].answered == 0){
+    %>
+    <p>First name: <%=data[i].fName%>
+        Last name: <%=data[i].lName%>
+        Type : <%=data[i].type%>
+        Faculty code: <%=data[i].facCode%></p>
+    <button onclick="showForm(<%=i%>)" style="cursor: pointer" class="responseButton">Respond</button>
+
+    <p><%=data[i].msg%></p>
+    <form action="/manageRequests" method="post" class="hiddenForm">
+        <input type="hidden" name="fName" value="<%=data[i].fName%>">
+        <input type="hidden" name="lName" value="<%=data[i].lName%>">
+        <input type="hidden" name="facCode" value="<%=data[i].facCode%>">
+        <input type="hidden" name="type" value="<%=data[i].type%>">
+        <input type="text" name="resp" placeholder="Write a response...">
+        <input type="submit" value="submit">
+    </form>
+    <br><br>
+    <%}} }
+    else {%>
+        <p>No data</p>
+    <%}%>
+
+    <p>Answered</p>
+    <%if(data.length){
+    for(var i = 0; i < data.length; i++){
+    if(data[i].answered == 1){
+    %>
+    <p>First name: <%=data[i].fName%>
+        Last name: <%=data[i].lName%>
+        Faculty code: <%=data[i].facCode%></p>
+    <form action="/removeMsg" method="post">
+        <input type="hidden" name="fName" value="<%=data[i].fName%>">
+        <input type="hidden" name="lName" value="<%=data[i].lName%>">
+        <input type="hidden" name="facCode" value="<%=data[i].facCode%>">
+        <input type="hidden" name="type" value="<%=data[i].type%>">
+        <input type="submit" value="remove">
+    </form>
+
+    <p><%=data[i].msg%></p>
+    <br>
+    <p><%=data[i].response%></p>
+    <br><br>
+    <%}} }
+    else {%>
+        <p>No data</p>
+    <%}%>
+
+</div>
+<script>
+    function showForm(x){
+        document.getElementsByClassName("responseButton")[x].style.display = 'none';
+        document.getElementsByClassName("hiddenForm")[x].style.display = 'none';
+    }
+    // Close the dropdown menu if the user clicks outside of it
+    window.onclick = function(event) {
+        if (!event.target.matches('.responseButton') && !event.target.matches('.hiddenForm input[type=text]') && !event.target.matches('.hiddenForm input[type=submit]') ) {
+            var forms = document.getElementsByClassName("hiddenForm");
+            var buttons = document.getElementsByClassName("responseButton");
+            var i;
+            for (i = 0; i < forms.length; i++) {
+                var openForms = forms[i];
+                if (openForms.style.display == 'block') {
+                    openForms.style.display = 'none';
+                }
+            }
+            for (i = 0; i < buttons.length; i++) {
+                var openBtn = buttons[i];
+                if (openBtn.style.display == 'none' ) {
+                    openBtn.style.display = 'block' ;
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>

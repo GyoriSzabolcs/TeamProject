@@ -17,7 +17,7 @@
   <a href="listStudents.ejs">List of  students</a>
   <a href="addStudent.ejs">Add student</a>
   <a href="removeStudent.ejs">Remove student</a>
-  <a href="manageRequests.html">Manage requests</a>
+  <a href="manageRequests.ejs">Manage requests</a>
   <a href="anouncements&events.html">Anouncements & Events</a>
 </div>
 
@@ -69,6 +69,8 @@
 <script>
   function myFunction(x){
     document.getElementsByClassName("dropContent")[x].classList.toggle("show");
+    moment().format("MMM Do YY");
+
   }
   // Close the dropdown menu if the user clicks outside of it
   window.onclick = function(event) {
