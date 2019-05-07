@@ -129,7 +129,7 @@ exports.getMessages = function (req, res) {
     conn.query("SELECT * FROM messages ORDER BY answered ASC, type", (err, rows) => {
         if(err)
             console.log("Error displaying from table: messages");
-        res.render('manageRequests',{page_title:"Manage Requests", data:rows});
+        res.render('manageRequests',{page_title:"Manage Requests", data: rows});
     })
 }
 exports.addResponse = function (req, res) {

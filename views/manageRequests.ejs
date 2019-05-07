@@ -22,18 +22,21 @@
 </div>
 
 <div class="main">
-    <p>Unanswered</p>
+    <h1>Unanswered</h1>
+    <hr>
     <%if(data.length){
     for(var i = 0; i < data.length; i++){
     if(data[i].answered == 0){
     %>
-    <p>First name: <%=data[i].fName%>
-        Last name: <%=data[i].lName%>
-        Type : <%=data[i].type%>
-        Faculty code: <%=data[i].facCode%></p>
+    <p style="font-size:15px;">First name: <%=data[i].fName%><br>
+        Last name: <%=data[i].lName%><br>
+        Type : <%=data[i].type%><br>
+        Faculty code: <%=data[i].facCode%><br></p>
+        <h3>Message: </h3>
+        <p style="padding: 10px;border-style: groove;border-width: 1px;margin-bottom:10px;"><%=data[i].msg%></p>
     <button onclick="showForm(<%=i%>)" style="cursor: pointer" class="responseButton">Respond</button>
-
-    <p><%=data[i].msg%></p>
+<br>
+    <!-- <p><%=data[i].msg%></p> -->
     <form action="/manageRequests" method="post" class="hiddenForm">
         <input type="hidden" name="fName" value="<%=data[i].fName%>">
         <input type="hidden" name="lName" value="<%=data[i].lName%>">

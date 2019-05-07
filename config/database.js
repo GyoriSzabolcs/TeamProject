@@ -4,6 +4,6 @@ module.exports ={
     'user':'root',
     'password':'1234'
   },
-  'database':'dormadmin',
+  'database':'dormadmin2',
   //'user-table':'users'
 }
