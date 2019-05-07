@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>indexAdmin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" media="all" id="css" href="../assets/layoutrequests.css">
+
+</head>
+<body background="pollock.jpg">
+
+  <div class="topbar">
+    <a href="#bye">Sign Out</a>
+  </div>
+
+<div class="sidenav">
+  <a href="indexAdmin.ejs">Home</a>
+  <a href="listStudents.ejs">List of  students</a>
+  <a href="addStudent.ejs">Add student</a>
+  <a href="removeStudent.ejs">Remove student</a>
+  <a href="manageRequests.html">Manage requests</a>
+  <a href="anouncements&events.html">Anouncements & Events</a>
+</div>
+
+<div class="main">
+  <div class="limiter">
+    <br>
+    <div class="bar">
+        <h3 align="center">  Manage  complaints</h3>
+    </div>
+        <table class="table" >
+          <%if(data.length){
+          for(var i = 0; i < data.length; i++){ %> <br>
+            <div class="au">
+              <ol>
+                <li>
+                  Complaint: <%=data[i].msg%> <br> [<%=data[i].fName%> <%=data[i].lName%>]<br>
+                  <form action="/requests"> Status:
+                    <select name="status">
+                      <option value="unresolved">unresolved</option>
+                      <option value="progress">in progress</option>
+                      <option value="done">done</option>
+                    </select>
+                  </form><br>
+                  <textarea rows="4" cols="50" name="comment" form="usrform"> Enter response here...</textarea><br>
+                  <input type="button" value="Response" /><br>
+                </li>
+
+              <li>
+                Complaint: <%=data[i].msg%> [<%=data[i].fName%> <%=data[i].lName%>]<br>
+                <form action="/requests"> Status:
+                  <select name="status">
+                    <option value="unresolved">unresolved</option>
+                    <option value="progress">in progress</option>
+                    <option value="done">done</option>
+                  </select>
+                </form><br>
+                <textarea rows="4" cols="50" name="comment" form="usrform"> Enter response here...</textarea><br>
+                <input type="button" value="Response" /><br>
+              </li>
+            </ol>
+          </div> <br>
+          <% }
+          } else { %>
+          <div class="au">Fantastic, there are no complaints.<br></div>
+          <% } %>
+        </table>
+  </div>
+    <br><br>
+
+    <div class="limiter">
+      <br>
+      <div class="bar">
+          <h3 align="center">  Manage  questions</h3>
+      </div>
+          <table class="table" >
+            <%if(data.length){
+            for(var i = 0; i < data.length; i++){ %> <br>
+              <div class="au">
+                <ol>
+                  <li>
+                    Question: <%=data[i].msg%> <br> [<%=data[i].fName%> <%=data[i].lName%>]<br>
+                    <form action="/requests"> Status:
+                      <select name="status">
+                        <option value="unresolved">unresolved</option>
+                        <option value="progress">in progress</option>
+                        <option value="done">done</option>
+                      </select>
+                    </form><br>
+                    <textarea rows="4" cols="50" name="comment" form="usrform"> Enter response here...</textarea><br>
+                    <input type="button" value="Response" /><br>
+                  </li>
+              </ol>
+            </div> <br>
+            <% }
+            } else { %>
+              <div class="au">
+                    Fantastic, there are no questions.<br>
+            </div>
+            <% } %>
+          </table>
+    </div>
+      <br><br>
+
+      <div class="limiter">
+        <br>
+        <div class="bar">
+            <h3 align="center">Other requests</h3>
+        </div>
+            <table class="table" >
+              <%if(data.length){
+              for(var i = 0; i < data.length; i++){ %> <br>
+                <div class="au">
+                  <ol>
+                    <li>
+                      Request: <%=data[i].msg%> [<%=data[i].fName%> <%=data[i].lName%>]<br>
+                      <form action="/requests"> Status:
+                        <select name="status">
+                          <option value="unresolved">unresolved</option>
+                          <option value="progress">in progress</option>
+                          <option value="done">done</option>
+                        </select>
+                      </form><br>
+                      <textarea rows="4" cols="50" name="comment" form="usrform"> Enter response here...</textarea><br>
+                      <input type="button" value="Response" /><br>
+                    </li>
+                </ol>
+              </div> <br>
+              <% }
+              } else { %>
+                <div class="au">
+                      Fantastic, there are no other requests.<br>
+              </div>
+              <% } %>
+            </table>
+      </div>
+        <br><br>
+
+</div>
+
+</body>
+</html>

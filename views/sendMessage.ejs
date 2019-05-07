@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>indexAdmin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" media="all" id="css" href="../assets/layoutAdmin.css">
+
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="#bye">Sign Out</a>
+  </div>
+
+<div class="sidenav">
+  <a href="indexAdmin.ejs">Home</a>
+  <a href="listStudents.ejs">List of students</a>
+  <a href="addStudent.ejs">Add student</a>
+  <a href="removeStudent.ejs">Remove student</a>
+  <a href="manageRequests.html">Manage requests</a>
+  <a href="anouncements&events.html">Anouncements & Events</a>
+</div>
+
+<div class="container">
+
+  <!-- <form action="???" method="get" target="_blank">
+    CNP: <input type="text" name="cnp"><br>
+    First name: <input type="text" name="fName"><br>
+    Last name: <input type="text" name="lName"><br>
+    Facultate: <input type="text" name="fac"><br>
+    Nr. matricol: <input type="text" name="facCode"><br>
+    <input type="submit" value="Submit">
+  </form> -->
+
+  <div class="form">
+    <form action="/sendMessage" method="post">
+      <fieldset>
+        <legend> Add student </legend>
+        <input type="text" name="fName" placeholder="First name: *">
+        <input type="text" name="lName" placeholder="Last name: *">
+        <input type="text" name="facCode" placeholder="FacCode: *">
+        <input type="text" name="msg" placeholder="Message: *">
+      </fieldset>
+    <input type="submit" value="Submit" />
+    </form>
+  </div>
+</div>
+
+</body>
+</html>
