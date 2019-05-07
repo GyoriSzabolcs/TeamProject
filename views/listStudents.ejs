@@ -68,9 +68,8 @@
 </div>
 <script>
   function myFunction(x){
-    document.getElementsByClassName("dropContent")[x].classList.toggle("show");
+    document.getElementsByClassName("dropContent")[x].style.display='block';
     moment().format("MMM Do YY");
-
   }
   // Close the dropdown menu if the user clicks outside of it
   window.onclick = function(event) {
@@ -79,8 +78,8 @@
       var i;
       for (i = 0; i < dropdowns.length; i++) {
         var openDropdown = dropdowns[i];
-        if (openDropdown.classList.contains('show')) {
-          openDropdown.classList.remove('show');
+        if (openDropdown.style.display == 'block') {
+          openDropdown.style.display = 'none';
         }
       }
     }

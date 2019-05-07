@@ -165,3 +165,11 @@ exports.removeMsg = function (req, res) {
                 res.redirect('/manageRequests.ejs');
         })
 }
+exports.getRooms = function (req, res) {
+    conn.query("SELECT s.fName, s.lName, r.* FROM rooms r, students s, users u WHERE s.CNP = u.CNP AND u.roomNumber = r.ID ORDER BY r.ID ASC",
+        function (err, rows) {
+            if(err)
+                console.log("Error displaying from table: students, users, rooms");
+            res.render('indexAdmin', {page_title:"Home", data: rows});
+        });
+}

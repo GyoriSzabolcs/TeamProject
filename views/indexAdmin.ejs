@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>indexAdmin</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" media="all" id="css" href="../assets/layoutAdmin.css">
+  <title>camere</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="all" id="css" href="../assets/layoutAdmin.css">
 
 </head>
 <body>
 
-  <div class="topbar">
-    <a href="#bye">Sign Out</a>
-  </div>
-  
+<div class="topbar">
+  <a href="#bye">Sign Out</a>
+</div>
+
 <div class="sidenav">
   <a href="indexAdmin.ejs">Home</a>
   <a href="listStudents.ejs">List of students</a>
@@ -22,11 +22,97 @@
 </div>
 
 <div class="main">
-  <h2>Home</h2>
-  <p> alerts, important stuffs, reminders, maybe a calendar </p>
+  <div class="limiter">
+    <br>
+    <button class="collapsible">Parter</button>
+    <div class="content">
+      <br>
+      <%if(data.length) {
+        for(var i = 0 ; i < data.length; i++) {
+          if(data[i].ID < 100){
+      %>
+      <button class="collapsible2">Camera <%=data[i].ID%></button>
+      <div class="content">
+            <%for(var j = 0; j < data[i].currCapacity; j++){%>
+            <p><%=data[j+i].fName%> <%=data[j+i].lName%></p>
+            <%}%>
+            <p><%=data[i].comments%></p>
+      </div>
+      <%} } } else {%>
+      <button class="collapsible2">NO CONTENT</button><%}%>
+    </div>
+    <button class="collapsible">Etaj 1</button>
+    <div class="content">
+      <%if(data.length) {
+      for(var i = 0 ; i < data.length; i++) {
+      if(data[i].ID > 101 && data[i].ID < 200){
+      %>
+      <button class="collapsible2">Camera <%=data[i].ID%></button>
+      <div class="content">
+        <%for(var j = 0; j <data[i].currCapacity; j++) {%>
+        <p><%=data[j+i].fName%> <%=data[j+i].lName%></p>
+        <% } %>
+        <p><%=data[i].comments%></p>
+      </div>
+      <%} i = i + data[i].currCapacity - 1} } else {%>
+        <button class="collapsible2">NO CONTENT</button><%}%>
+      <br>
+    </div>
+    <button class="collapsible">Etaj 2</button>
+    <div class="content">
+      <%if(data.length) {
+      for(var i = 0 ; i < data.length; i++) {
+      if(data[i].ID > 200){
+      %>
+      <button class="collapsible2">Camera <%=data[i].ID%></button>
+      <div class="content">
+        <%for(var j = 0; j < data[i].currCapacity; j++){%>
+        <p><%=data[j+i].fName%> <%=data[j+i].lName%></p>
+        <%}%>
+        <p><%=data[i].comments%></p>
+      </div>
+      <%} } } else {%>
+        <button class="collapsible2">NO CONTENT</button><%}%>
+    </div>
 
+  </div>
 </div>
-
 
 </body>
 </html>
+
+
+
+<script>
+  var coll = document.getElementsByClassName("collapsible");
+  var i;
+
+  for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.display === "block") {
+        content.style.display = "none";
+      } else {
+        content.style.display = "block";
+      }
+    });
+  }
+</script>
+
+<script>
+  var coll = document.getElementsByClassName("collapsible2");
+  var i;
+
+  for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.display === "block") {
+        content.style.display = "none";
+      } else {
+        content.style.display = "block";
+      }
+    });
+  }
+</script>

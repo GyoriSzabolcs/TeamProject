@@ -54,13 +54,14 @@ module.exports = function (app, passport) {
     });
     app.post('/removeStudent', dbstuff.dbRemove);
 
-    app.get('/indexAdmin.ejs', function (req, res) {
+   /* app.get('/indexAdmin.ejs', function (req, res) {
         res.render('indexAdmin.ejs');
-    });
+    });*/
     app.get('/listStudents.ejs', dbstuff.displayTable);
     app.get('/manageRequests.ejs', dbstuff.getMessages);
     app.post('/manageRequests', dbstuff.addResponse);
     app.post('/removeMsg', dbstuff.removeMsg);
+    app.get('/indexAdmin.ejs', dbstuff.getRooms);
 }
 
 function isLoggedIn(req, res, next) {

@@ -332,6 +332,9 @@ body {
 .showhim:hover .showme {
 	display: block;
 }
+.show {
+	display: block;
+}
 /*DROPDOWN FOR STUDENT LIST*/
 
 
@@ -394,4 +397,53 @@ ol li:before {
 }
 .hiddenForm{
 	display: none;
+}
+.collapsible {
+    background-color: #777;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    margin: 0 auto;
+}
+
+.active, .collapsible:hover {
+    background-color: #555;
+}
+
+.content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.collapsible2 {
+    background-color: 	#C0C0C0;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    width: 98%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    margin: 0 auto;
+}
+
+.active, .collapsible2:hover {
+    background-color: #888888;
+}
+p label {
+    font: 1rem 'Fira Sans', sans-serif;
+}
+
+input {
+    margin: .4rem;
 }
