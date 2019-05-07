@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 27, 2019 at 05:17 PM
--- Server version: 10.1.31-MariaDB
+-- Generation Time: 07 Mai 2019 la 16:00
+-- Versiune server: 10.1.31-MariaDB
 -- PHP Version: 7.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `login`
+-- Structura de tabel pentru tabelul `login`
 --
 
 CREATE TABLE `login` (
@@ -35,7 +35,7 @@ CREATE TABLE `login` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `login`
+-- Salvarea datelor din tabel `login`
 --
 
 INSERT INTO `login` (`username`, `pass`, `email`) VALUES
@@ -45,7 +45,7 @@ INSERT INTO `login` (`username`, `pass`, `email`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `messages`
+-- Structura de tabel pentru tabelul `messages`
 --
 
 CREATE TABLE `messages` (
@@ -53,13 +53,28 @@ CREATE TABLE `messages` (
   `fName` varchar(30) NOT NULL,
   `lName` varchar(30) NOT NULL,
   `facCode` varchar(30) NOT NULL,
-  `msg` text NOT NULL
+  `type` varchar(14) NOT NULL,
+  `msg` text NOT NULL,
+  `response` text,
+  `answered` tinyint(4) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Salvarea datelor din tabel `messages`
+--
+
+INSERT INTO `messages` (`ID`, `fName`, `lName`, `facCode`, `type`, `msg`, `response`, `answered`) VALUES
+(1, 'Raul', 'Borza', 'GE025', 'question', 'KJajkjdnljadjkNCL DKLSNAFKJA N SJND JKJANSD  S\r\n A\r\nS D\r\nSA F JOAJEGJSDKJGNAKSN', 'ana are mere', 1),
+(2, 'Mihai', 'Georgescu', 'PH111', 'complaint', 'lkjnasfknasknf sk d a\r\n sd\r\n ad a', 'kansf sam, m,das f;,mnsd lk;', 1),
+(4, 'Raul', 'Borza', 'GE025', 'question', 'kjdhnfkjnaskf;jbs;jafjk abfjs\'dfads\r\nf\r\nasdf\r\nasdfsadfsda', 'ana are mere', 1),
+(6, 'Edwin', 'Vicze', 'IE300', 'question', 'ala bala portocala', NULL, 0),
+(7, 'George', 'Preda', 'HI285', 'complaint', 'asfasvjnasklj njksbjsa bj bjasb', NULL, 0),
+(8, 'Andrei', 'Cozma', 'IE301', 'complaint', 'dkankljsa sndskjan jasdjlk dlkjasbdjksab ksa dlkanskldnljsanf lksdlfjh sajkdbjkldsfjkdjfs', NULL, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rooms`
+-- Structura de tabel pentru tabelul `rooms`
 --
 
 CREATE TABLE `rooms` (
@@ -72,7 +87,7 @@ CREATE TABLE `rooms` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rooms`
+-- Salvarea datelor din tabel `rooms`
 --
 
 INSERT INTO `rooms` (`ID`, `floor`, `currCapacity`, `maxCapacity`, `sex`, `comments`) VALUES
@@ -125,7 +140,7 @@ INSERT INTO `rooms` (`ID`, `floor`, `currCapacity`, `maxCapacity`, `sex`, `comme
 -- --------------------------------------------------------
 
 --
--- Table structure for table `students`
+-- Structura de tabel pentru tabelul `students`
 --
 
 CREATE TABLE `students` (
@@ -137,7 +152,7 @@ CREATE TABLE `students` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `students`
+-- Salvarea datelor din tabel `students`
 --
 
 INSERT INTO `students` (`CNP`, `fName`, `lName`, `faculty`, `facCode`) VALUES
@@ -155,7 +170,7 @@ INSERT INTO `students` (`CNP`, `fName`, `lName`, `faculty`, `facCode`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Structura de tabel pentru tabelul `users`
 --
 
 CREATE TABLE `users` (
@@ -169,7 +184,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `users`
+-- Salvarea datelor din tabel `users`
 --
 
 INSERT INTO `users` (`CNP`, `username`, `enrollDate`, `nextPaymentDate`, `nextPaymentSum`, `roomNumber`, `details`) VALUES
@@ -220,14 +235,14 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- Constraints for dumped tables
+-- Restrictii pentru tabele sterse
 --
 
 --
--- Constraints for table `users`
+-- Restrictii pentru tabele `users`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `users_cnp_constraint` FOREIGN KEY (`CNP`) REFERENCES `students` (`CNP`) ON DELETE CASCADE ON UPDATE CASCADE,
