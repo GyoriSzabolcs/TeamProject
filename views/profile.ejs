@@ -1,35 +1,163 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA=Compatible" content="ie=edge">
-    <title>Cancer</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <style>
-      html{
-        padding:50px;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <div>
-        <h1>My profile</h1>
-        <a href="/logout">Logout</a>
-      </div>
-
-      <div>
-        <div>
-          <div>
-            <h3>Welcome <%= user.username %></h3>
-            <p>
-              <%= user.id%>
-              <%= user.username%>
-            </p>
-          </div>
-        </div>
-      </div>
+<head>
+<title>Dooorm</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="../assets/layout.css" rel="stylesheet" type="text/css" media="all">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body id="top">
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row0">
+  <div id="topbar" class="hoc clear">
+    <!-- ################################################################################################ -->
+    <div class="fl_left">
+      <ul>
+        <li><i class="fa fa-phone"></i>numartelefon</li>
+        <li><i class="fa fa-envelope-o"></i>mail.com</li>
+      </ul>
     </div>
-  </body>
+    <div class="fl_right">
+      <ul>
+        <li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
+        <li><a href="#">Login</a></li>
+        <li><a href="#">Register</a></li>
+      </ul>
+    </div>
+    <!-- ################################################################################################ -->
+  </div>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row1">
+  <header id="header" class="hoc clear">
+    <!-- ################################################################################################ -->
+    <div id="logo" class="fl_left">
+      <h1><a href="../index.html">DOOOOOORM</a></h1>
+    </div>
+    <div id="quickinfo" class="fl_right">
+      <ul class="nospace inline">
+        <li><strong>Telefon:</strong><br>
+          telefon</li>
+        <li><strong>Fix:</strong><br>
+          fix</li>
+      </ul>
+    </div>
+    <!-- ################################################################################################ -->
+  </header>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row2">
+  <nav id="mainav" class="hoc clear">
+    <!-- ################################################################################################ -->
+    <ul class="clear">
+      <li><a href="/profile">Home</a></li>
+      <li><a href="/news">News</a></li>
+      <li><a href="/sendMessage">Alta Pagina</a></li>
+      <li><a href="sidebar-left.html">Contact</a></li>
+    </ul>
+    <!-- ################################################################################################ -->
+  </nav>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row3">
+  <main class="hoc container clear">
+
+    <div class="profile-user-info">
+
+								<div class="profile-info-row">
+									<div class="profile-info-name"> <h3>Prenume: </h3></div>
+                  <span>-<%=data.selfName[0].fName%></span>
+								</div>
+
+                <hr>
+                <div class="profile-info-row">
+									<div class="profile-info-name"><h3>Nume: </h3></div>
+
+									<div class="profile-info-value">
+										<span>-<%=data.selfName[0].lName%></span>
+									</div>
+								</div>
+
+                <hr>
+								<div class="profile-info-row">
+									<div class="profile-info-name"><h3> Numar Matricol: </h3></div>
+
+									<div class="profile-info-value">
+										<span>-<%=data.selfName[0].facCode%></span>
+									</div>
+								</div>
+
+                <hr>
+                <div class="profile-info-row">
+									<div class="profile-info-name"><h3> Data plata: </h3></div>
+									<div class="profile-info-value">
+										<span>-<%=data.self[0].nextPaymentDate.getFullYear()+"-"+(parseInt(data.self[0].nextPaymentDate.getMonth())+1)+"-"+data.self[0].nextPaymentDate.getDate()%></span>
+									</div>
+								</div>
+
+                <hr>
+                <div class="profile-info-row">
+									<div class="profile-info-name"><h3> Valoare Plata: </h3></div>
+									<div class="profile-info-value">
+										<span>-<%=data.self[0].nextPaymentSum%></span>
+									</div>
+								</div>
+
+                <hr>
+								<div class="profile-info-row">
+									<div class="profile-info-name"><h3> Camera: </h3></div>
+									<div class="profile-info-value">
+										<span>-<%=data.self[0].roomNumber%></span>
+									</div>
+								</div>
+
+                <hr>
+                <div class="profile-info-row">
+									<div class="profile-info-name"><h3> Colegi: </h3></div>
+									<div class="profile-info-value">
+									</div>
+								</div>
+                <%if(data.mates.length){%>
+                <%for(var i = 0; i < data.mates.length; i++){ %>
+                  <div class="profile-info-row">
+  									<div class="profile-info-name"></div>
+  									<div class="profile-info-value">
+  										<span><%=data.mates[0].fName%> <%=data.mates[0].lName%></span>
+  									</div>
+                  </div>
+
+                  <hr>
+                <% } %>
+                <%} %>
+
+              </div>
+          </div>
+
+    <div class="clear"></div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row5">
+  <div id="copyright" class="hoc clear">
+    <!-- ################################################################################################ -->
+    <p class="fl_left">Cpy rigt &copy; Cpy rigt - <a href="#">nume aici</a></p>
+    <p class="fl_right">DOOOOOORM</a></p>
+    <!-- ################################################################################################ -->
+  </div>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
+<!-- JAVASCRIPTS -->
+<script src="../layout/scripts/jquery.min.js"></script>
+<script src="../layout/scripts/jquery.backtotop.js"></script>
+<script src="../layout/scripts/jquery.mobilemenu.js"></script>
+</body>
 </html>

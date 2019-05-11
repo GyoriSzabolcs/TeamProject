@@ -1,4 +1,7 @@
 const dbstuff = require('../config/adminEntry.js');
+const profileInformation = require('../config/getProfile.js');
+const news = require('../config/news.js');
+const mesajeTrimitere = require('../config/mesajeTrimitere.js');
 
 module.exports = function (app, passport) {
 
@@ -34,15 +37,39 @@ module.exports = function (app, passport) {
         failureFlash: true
     }));
 
-    app.get('/profile', isLoggedIn, function (req, res) {
-        res.render('profile.ejs', {
-            user: req.user
-        });
+    app.use(function(req, res, next){
+      res.locals.user = req.user;
+      next();
     });
+
+    // app.get('/profile', isLoggedIn, function (req, res) {
+    //     res.render('profile.ejs', {
+    //         user: req.user
+    //     });
+    // });
 
     app.get('/logout', function (req, res) {
         req.logout();
         res.redirect('/');
+    });
+
+    //app.get('/profile',{a: a, b: profileInformation.profileInfoSelf });
+    app.get('/profile', profileInformation.profileInfo);
+
+    app.get('/profile', isLoggedIn, function(req, res){
+      res.render('profile.ejs', {a: a, b: profileInformation.profileInfoSelf });
+    });
+    //app.get('/profile', profileInformation.profileInfo);
+    app.get('/news', isLoggedIn, news.display);
+
+    app.get('/news', isLoggedIn, function (req, res) {
+        res.render('news.ejs');
+    });
+
+    app.post('/sendMessage', isLoggedIn, mesajeTrimitere.messageInsert);
+
+    app.get('/sendMessage', isLoggedIn, function (req, res) {
+        res.render('sendMessage.ejs');
     });
     /*###################################*/
     app.get('/addStudent.ejs', function (req, res) {

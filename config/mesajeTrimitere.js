@@ -12,46 +12,44 @@ connection.query('USE ' + dbconfig.database);
 //FIELDS: ID, fName, lName, facCode, msg
 
 exports.messageInsert = function(req, res){
-    const fName = req.body.fName;
-    const lName = req.body.lName;
-    const facCode = req.body.facCode;
     const msg = req.body.msg;
-    // if(cnp.length != 13 || !/^[0-9]+$/.test(cnp)){
-    //     console.log("bad cnp");
-    //     //req.flash('insertMessage', 'bad cnp');
-    //     res.redirect("/addStudent.ejs");
-    //     return;
-    //
-    // } else if(fName.length < 3 || fName.length > 30 || !/^[a-zA-Z]+$/.test(fName)){
-    //     console.log("bad first name");
-    //     res.redirect("/addStudent.ejs");
-    //     return;
-    // } else if(lName.length < 3 || lName.length > 30 || !/^[a-zA-Z]+$/.test(lName)) {
-    //     console.log("bad last name");
-    //     res.redirect("/addStudent.ejs");
-    //     return;
-    // } else if(facCode.length != 5 || code.match(/^[A-Z0-9]+$/i) === null) { // CHECK THIS
-    //     console.log("bad faculty code");
-    //     res.redirect("/addStudent.ejs");
-    //     return;
-    // }
-    connection.query("SELECT facCode FROM students WHERE facCode = ?", [facCode], (err, rows) => {
+    const type = req.body.types;
+    console.log(type);
+    var returnedInfo = {
+
+    };
+    connection.query("SELECT * FROM users WHERE username = '" + user +"'",
+        function (err, rows) {
+        if(err)
+            console.log("Error displaying from table: students");
+            console.log(rows);
+            connection.query("SELECT * FROM students WHERE CNP = " + rows[0].CNP,
+              function (err, rows) {
+                if(err)
+                  console.log("Error displaying from table: students2");
+                returnedInfo.selfName = rows;
+                console.log(returnedInfo.self);
+
+
+    connection.query("SELECT facCode FROM students WHERE facCode = ?", [returnedInfo.selfName[0].facCode], (err, rows) => {
         if (err) {
             console.error(err);
             throw err;
         } else if(rows.length > 0){
-            connection.query("INSERT INTO messages (fName, lName, facCode, msg) values (?, ?, ?, ?)", [fName, lName, facCode, msg], (err, rows) => {
+            connection.query("INSERT INTO messages (fName, lName, facCode, type, msg) values (?, ?, ?, ?, ?)", [returnedInfo.selfName[0].fName, returnedInfo.selfName[0].lName, returnedInfo.selfName[0].facCode, type, msg], (err, rows) => {
                 if (err) {
                     console.error(err);
                     throw err;
                 } else {
-                    res.redirect("/sendMessage.ejs");
+                    res.redirect("/sendMessage");
                 }
 
             });
         } else{
             console.log("invalid student id");
-            res.redirect("/sendMessage.ejs");
+            res.redirect("/sendMessage");
         }
     });
+  });
+});
 };

@@ -1,50 +1,135 @@
-<!DOCTYPE html>
-<html>
 <head>
-<title>indexAdmin</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" media="all" id="css" href="../assets/layoutAdmin.css">
-
+<title>Dooorm</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="../assets/layout.css" rel="stylesheet" type="text/css" media="all">
+<link rel="stylesheet" type="text/css" href="../assets/css/util.css">
+<link rel="stylesheet" type="text/css" href="../assets/css/main.css">
+<link rel="stylesheet" href="style.css" />
 </head>
-<body>
-
-  <div class="topbar">
-    <a href="#bye">Sign Out</a>
-  </div>
-
-<div class="sidenav">
-  <a href="indexAdmin.ejs">Home</a>
-  <a href="listStudents.ejs">List of students</a>
-  <a href="addStudent.ejs">Add student</a>
-  <a href="removeStudent.ejs">Remove student</a>
-  <a href="manageRequests.html">Manage requests</a>
-  <a href="anouncements&events.html">Anouncements & Events</a>
-</div>
-
-<div class="container">
-
-  <!-- <form action="???" method="get" target="_blank">
-    CNP: <input type="text" name="cnp"><br>
-    First name: <input type="text" name="fName"><br>
-    Last name: <input type="text" name="lName"><br>
-    Facultate: <input type="text" name="fac"><br>
-    Nr. matricol: <input type="text" name="facCode"><br>
-    <input type="submit" value="Submit">
-  </form> -->
-
-  <div class="form">
-    <form action="/sendMessage" method="post">
-      <fieldset>
-        <legend> Add student </legend>
-        <input type="text" name="fName" placeholder="First name: *">
-        <input type="text" name="lName" placeholder="Last name: *">
-        <input type="text" name="facCode" placeholder="FacCode: *">
-        <input type="text" name="msg" placeholder="Message: *">
-      </fieldset>
-    <input type="submit" value="Submit" />
-    </form>
+<body id="top">
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row0">
+  <div id="topbar" class="hoc clear">
+    <!-- ################################################################################################ -->
+    <div class="fl_left">
+      <ul>
+        <li><i class="fa fa-phone"></i>numartelefon</li>
+        <li><i class="fa fa-envelope-o"></i>mail.com</li>
+      </ul>
+    </div>
+    <div class="fl_right">
+      <ul>
+        <li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
+        <li><a href="#">Login</a></li>
+        <li><a href="#">Register</a></li>
+      </ul>
+    </div>
+    <!-- ################################################################################################ -->
   </div>
 </div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row1">
+  <header id="header" class="hoc clear">
+    <!-- ################################################################################################ -->
+    <div id="logo" class="fl_left">
+      <h1><a href="../index.html">DOOOOOORM</a></h1>
+    </div>
+    <div id="quickinfo" class="fl_right">
+      <ul class="nospace inline">
+        <li><strong>Telefon:</strong><br>
+          telefon</li>
+        <li><strong>Fix:</strong><br>
+          fix</li>
+      </ul>
+    </div>
+    <!-- ################################################################################################ -->
+  </header>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row2">
+  <nav id="mainav" class="hoc clear">
+    <!-- ################################################################################################ -->
+    <ul class="clear">
+      <li><a href="/profile">Home</a></li>
+      <li><a href="/news">News</a></li>
+      <li><a href="/sendMessage">Alta Pagina</a></li>
+      <li><a href="sidebar-left.html">Contact</a></li>
+    </ul>
+    <!-- ################################################################################################ -->
+  </nav>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row3">
+  <main class="hoc container clear">
 
+    <div class="profile-user-info">
+
+      <div class="container-contact100">
+
+        <div class="wrap-contact100">
+
+            <span class="contact100-form-title">
+              Trimite mesaj
+            </span>
+      <form class="" action="/sendMessage" method="post">
+        <div class="tipul">
+              <select id="types" name="types">
+                <option value="other">Selecteaza tipul:</option>
+                <option value="question">Intrebare</option>
+                <option value="proposal">Propunere</option>
+                <option value="plangere">Plangere</option>
+              </select>
+          </div>
+
+
+            <div class="wrap-input100">
+              <textarea class="input100" name="msg" id="msg" placeholder="Mesajul tau"></textarea>
+              <span class="focus-input100"></span>
+            </div>
+
+
+            <div class="container-contact100-form-btn">
+              <button class="contact100-form-btn">
+                <span>
+                  Trimite
+                </span>
+              </button>
+            </div>
+      </form>
+      </div>
+          </form>
+        </div>
+      </div>
+              </div>
+          </div>
+
+    <div class="clear"></div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row5">
+  <div id="copyright" class="hoc clear">
+    <!-- ################################################################################################ -->
+    <p class="fl_left">Cpy rigt &copy; Cpy rigt - <a href="#">nume aici</a></p>
+    <p class="fl_right">DOOOOOORM</a></p>
+    <!-- ################################################################################################ -->
+  </div>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
+<!-- JAVASCRIPTS -->
+<script src="../layout/scripts/jquery.min.js"></script>
+<script src="../layout/scripts/jquery.backtotop.js"></script>
+<script src="../layout/scripts/jquery.mobilemenu.js"></script>
 </body>
 </html>
