@@ -36,7 +36,7 @@ exports.messageInsert = function(req, res){
             console.error(err);
             throw err;
         } else if(rows.length > 0){
-            connection.query("INSERT INTO messages (fName, lName, facCode, type, msg) values (?, ?, ?, ?, ?)", [returnedInfo.selfName[0].fName, returnedInfo.selfName[0].lName, returnedInfo.selfName[0].facCode, type, msg], (err, rows) => {
+            connection.query("INSERT INTO messages (fName, lName, facCode, type, msg, answered) values (?, ?, ?, ?, ?, ?)", [returnedInfo.selfName[0].fName, returnedInfo.selfName[0].lName, returnedInfo.selfName[0].facCode, type, msg, 0], (err, rows) => {
                 if (err) {
                     console.error(err);
                     throw err;
