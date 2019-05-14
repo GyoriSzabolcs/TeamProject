@@ -62,6 +62,8 @@ module.exports = function (app, passport) {
     app.post('/manageRequests', dbstuff.addResponse);
     app.post('/removeMsg', dbstuff.removeMsg);
     app.get('/indexAdmin.ejs', dbstuff.getRooms);
+    app.post('/changeRoom', dbstuff.changeRoom);
+    app.post('/postNews', dbstuff.postNews);
 }
 
 function isLoggedIn(req, res, next) {

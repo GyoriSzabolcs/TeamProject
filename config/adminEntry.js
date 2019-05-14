@@ -166,10 +166,85 @@ exports.removeMsg = function (req, res) {
         })
 }
 exports.getRooms = function (req, res) {
-    conn.query("SELECT s.fName, s.lName, r.* FROM rooms r, students s, users u WHERE s.CNP = u.CNP AND u.roomNumber = r.ID ORDER BY r.ID ASC",
+    conn.query("SELECT s.fName, s.lName, s.CNP, u.roomNumber, u.username, r.* FROM rooms r, students s, users u WHERE s.CNP = u.CNP AND u.roomNumber = r.ID ORDER BY r.ID ASC",
         function (err, rows) {
             if(err)
                 console.log("Error displaying from table: students, users, rooms");
-            res.render('indexAdmin', {page_title:"Home", data: rows});
+                res.render('indexAdmin', {page_title:"Home", data: rows});
         });
+}
+exports.changeRoom = function(req, res){
+    const CNP = req.body.CNP;
+    const usr = req.body.username;
+    const currC = req.body.currC;
+    const maxC = req.body.maxC;
+    const oldR = req.body.oldroom;
+    const newR = req.body.newroom;
+    console.log(currC + " " + oldR + " " + newR + " " + usr);
+    if(newR == oldR)
+        console.log("User is already in this room");
+    else if((newR > 0 && newR < 16) || (newR > 100 && newR < 116) || (newR > 200 && newR < 216)){
+        conn.query("SELECT * FROM rooms WHERE ID = ?", [newR], (err, rows) => {
+            //console.log(rows[0].currCapacity + " fjdshfohfshfod");
+            if(err){
+                console.log("Error retrieving from table: rooms");
+                console.log(err);
+                res.redirect('/indexAdmin.ejs');
+            }
+            else if(rows[0].currCapacity == rows[0].maxCapacity) {
+                console.log("Selected room is full");
+                res.redirect('/indexAdmin.ejs');
+            } else {
+                conn.query("UPDATE rooms SET currCapacity = ? WHERE ID = ?;",
+                    [rows[0].currCapacity+1, newR], (err, rows) => {
+                        if(err){
+                            console.log("Error updating tables: rooms 1");
+                            console.log(err);
+                            res.redirect('/indexAdmin.ejs');
+                        } else {
+                            console.log("Increment successful");
+                        }
+                    })
+                conn.query(" UPDATE users SET roomNumber = ? WHERE username = ?;",
+                    [ newR, usr], (err, rows) => {
+                        if(err){
+                            console.log("Error updating tables: users");
+                            console.log(err);
+                            res.redirect('/indexAdmin.ejs');
+                        } else {
+                            console.log("Modify successful");
+                        }
+                    })
+                conn.query("UPDATE rooms SET currCapacity = ? WHERE ID = ?;",
+                    [ currC-1, oldR], (err, rows) => {
+                        if(err){
+                            console.log("Error updating tables: rooms ");
+                            console.log(err);
+                            res.redirect('/indexAdmin.ejs');
+                        } else {
+                            console.log("Decrement successful");
+
+                        }
+                    })
+                res.redirect('/indexAdmin.ejs');
+            }
+        })
+    } else{
+        console.log("Room doesn't exist");
+        res.redirect('/indexAdmin.ejs');
+    }
+}
+exports.postNews = function (req, res) {
+    const msg = req.body.news;
+    conn.query("INSERT INTO news VALUES(NULL, 'admin', ?, SYSDATE())", [msg], (err) => {
+        if(err){
+            console.log("Error retrieving from table: rooms");
+            console.log(err);
+            res.redirect('/indexAdmin.ejs');
+        } else
+        {
+            console.log("Post successful");
+            res.redirect('/indexAdmin.ejs');
+        }
+    })
 }

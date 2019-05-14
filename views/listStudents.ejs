@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>indexAdmin</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" media="all" id="css" href="../assets/layoutAdmin.css">
+  <title>indexAdmin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="all" id="css" href="../assets/layoutAdmin.css">
 
 </head>
 <body>
 
-  <div class="topbar">
-    <a href="#bye">Sign Out</a>
-  </div>
+<div class="topbar">
+  <a href="#bye">Sign Out</a>
+</div>
 
 <div class="sidenav">
   <a href="indexAdmin.ejs">Home</a>
   <a href="listStudents.ejs">List of  students</a>
   <a href="addStudent.ejs">Add student</a>
   <a href="removeStudent.ejs">Remove student</a>
-  <a href="manageRequests.ejs">Manage requests</a>
+  <a href="manageRequests.html">Manage requests</a>
   <a href="anouncements&events.html">Anouncements & Events</a>
 </div>
 
@@ -43,14 +43,14 @@
             <td class="cell"><%=data[i].lName%></td>
             <td class="cell"><%=data[i].faculty%></td>
             <td class="cell"><%=data[i].facCode%></td>
-            <tr id="myDropdown" class="dropContent">
-              <td>Username: <%=data[i].username%></td>
-              <td>Enrollment date:<%=data[i].enrollDate%></td>
-              <td>Next payment date: <%=data[i].nextPaymentDate%></td>
-              <td>Next payment sum: <%=data[i].nextPaymentSum%></td>
-              <td>Room Number: <%=data[i].roomNumber%></td>
-              <td>Details: <%=data[i].details%></td>
-            </tr>
+          <tr id="myDropdown" class="dropContent">
+            <td>Username: <%=data[i].username%></td>
+            <td>Enrollment date:<%=data[i].enrollDate%></td>
+            <td>Next payment date: <%=data[i].nextPaymentDate%></td>
+            <td>Next payment sum: <%=data[i].nextPaymentSum%></td>
+            <td>Room Number: <%=data[i].roomNumber%></td>
+            <td>Details: <%=data[i].details%></td>
+          </tr>
           </tr>
           <% }
           } else { %>
@@ -68,8 +68,7 @@
 </div>
 <script>
   function myFunction(x){
-    document.getElementsByClassName("dropContent")[x].style.display='block';
-    moment().format("MMM Do YY");
+    document.getElementsByClassName("dropContent")[x].classList.toggle("show");
   }
   // Close the dropdown menu if the user clicks outside of it
   window.onclick = function(event) {
@@ -78,8 +77,8 @@
       var i;
       for (i = 0; i < dropdowns.length; i++) {
         var openDropdown = dropdowns[i];
-        if (openDropdown.style.display == 'block') {
-          openDropdown.style.display = 'none';
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
         }
       }
     }

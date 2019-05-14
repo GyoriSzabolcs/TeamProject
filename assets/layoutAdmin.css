@@ -332,9 +332,6 @@ body {
 .showhim:hover .showme {
 	display: block;
 }
-.show {
-	display: block;
-}
 /*DROPDOWN FOR STUDENT LIST*/
 
 
@@ -359,6 +356,10 @@ body {
 	text-decoration: none;
 	display: inline-block;
 }
+
+
+.show {display: inline-block;}
+
 
 /*MANAGE REQUESTS*/
 ol {

@@ -35,6 +35,15 @@
       <div class="content">
             <%for(var j = 0; j < data[i].currCapacity; j++){%>
             <p><%=data[j+i].fName%> <%=data[j+i].lName%></p>
+            <form action="/changeRoom" method="post" class="switchRoomForm">
+              <input type="hidden" name="CNP" value="<%=data[i].CNP%>">
+              <input type="hidden" name="username" value="<%=data[i].username%>">
+              <input type="hidden" name="oldroom" value="<%=data[i].roomNumber%>">
+              <input type="hidden" name="currC" value="<%=data[i].currCapacity%>">
+              <input type="hidden" name="maxC" value="<%=data[i].maxCapacity%>">
+              <input type="text" name="newroom" placeholder="Switch to room...">
+              <input type="submit" onclick="resetFunc()" value="submit">
+            </form>
             <%}%>
             <p><%=data[i].comments%></p>
       </div>
@@ -51,6 +60,15 @@
       <div class="content">
         <%for(var j = 0; j <data[i].currCapacity; j++) {%>
         <p><%=data[j+i].fName%> <%=data[j+i].lName%></p>
+        <form action="/changeRoom" method="post" class="switchRoomForm">
+          <input type="hidden" name="CNP" value="<%=data[i].CNP%>">
+          <input type="hidden" name="username" value="<%=data[i].username%>">
+          <input type="hidden" name="oldroom" value="<%=data[i].roomNumber%>">
+          <input type="hidden" name="currC" value="<%=data[i].currCapacity%>">
+          <input type="hidden" name="maxC" value="<%=data[i].maxCapacity%>">
+          <input type="text" name="newroom" placeholder="Switch to room...">
+          <input type="submit" onclick="resetFunc()" value="submit">
+        </form>
         <% } %>
         <p><%=data[i].comments%></p>
       </div>
@@ -68,12 +86,31 @@
       <div class="content">
         <%for(var j = 0; j < data[i].currCapacity; j++){%>
         <p><%=data[j+i].fName%> <%=data[j+i].lName%></p>
+        <form action="/changeRoom" method="post" class="switchRoomForm">
+          <input type="hidden" name="CNP" value="<%=data[i].CNP%>">
+          <input type="hidden" name="username" value="<%=data[i].username%>">
+          <input type="hidden" name="oldroom" value="<%=data[i].roomNumber%>">
+          <input type="hidden" name="currC" value="<%=data[i].currCapacity%>">
+          <input type="hidden" name="maxC" value="<%=data[i].maxCapacity%>">
+          <input type="text" name="newroom" placeholder="Switch to room...">
+          <input type="submit" onclick="resetFunc()" value="submit">
+        </form>
         <%}%>
         <p><%=data[i].comments%></p>
       </div>
       <%} } } else {%>
         <button class="collapsible2">NO CONTENT</button><%}%>
     </div>
+
+  </div>
+  <div class="limiter"><br>
+    <h1>Post news</h1>
+    <textarea name="news" form="newsform" placeholder="Enter text here..."></textarea>
+    <form action = "/postNews" method="POST" id="newsform">
+      <input type="submit" value="Post">
+    </form>
+    <br>
+    <h3>Previous News</h3>
 
   </div>
 </div>
@@ -114,5 +151,10 @@
         content.style.display = "block";
       }
     });
+  }
+</script>
+<script>
+  function resetFunc(){
+    document.getElementsByClassName("switchRoomForm").reset();
   }
 </script>
