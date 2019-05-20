@@ -27,79 +27,81 @@
     <button class="collapsible">Parter</button>
     <div class="content">
       <br>
-      <%if(data.length) {
-        for(var i = 0 ; i < data.length; i++) {
-          if(data[i].ID < 100){
+      <%if(data1.length) {
+        for(var i = 0 ; i < data1.length; i++) {
+          if(data1[i].ID < 100){
       %>
-      <button class="collapsible2">Camera <%=data[i].ID%></button>
+      <button class="collapsible2">Camera <%=data1[i].ID%></button>
       <div class="content">
-            <%for(var j = 0; j < data[i].currCapacity; j++){%>
-            <p><%=data[j+i].fName%> <%=data[j+i].lName%></p>
+            <%for(var j = 0; j < data1[i].currCapacity; j++){%>
+            <p><%=data1[j+i].fName%> <%=data1[j+i].lName%></p>
             <form action="/changeRoom" method="post" class="switchRoomForm">
-              <input type="hidden" name="CNP" value="<%=data[i].CNP%>">
-              <input type="hidden" name="username" value="<%=data[i].username%>">
-              <input type="hidden" name="oldroom" value="<%=data[i].roomNumber%>">
-              <input type="hidden" name="currC" value="<%=data[i].currCapacity%>">
-              <input type="hidden" name="maxC" value="<%=data[i].maxCapacity%>">
+              <input type="hidden" name="CNP" value="<%=data1[j+i].CNP%>">
+              <input type="hidden" name="username" value="<%=data1[j+i].username%>">
+              <input type="hidden" name="oldroom" value="<%=data1[j+i].roomNumber%>">
+              <input type="hidden" name="currC" value="<%=data1[j+i].currCapacity%>">
+              <input type="hidden" name="maxC" value="<%=data1[j+i].maxCapacity%>">
               <input type="text" name="newroom" placeholder="Switch to room...">
               <input type="submit" onclick="resetFunc()" value="submit">
             </form>
             <%}%>
-            <p><%=data[i].comments%></p>
+        <p><%=data1[i].comments%></p>
       </div>
-      <%} } } else {%>
-      <button class="collapsible2">NO CONTENT</button><%}%>
+      <%} i = i + data1[i].currCapacity - 1} } else {%>
+        <button class="collapsible2">NO CONTENT</button><%}%>
+      <br>
     </div>
     <button class="collapsible">Etaj 1</button>
     <div class="content">
-      <%if(data.length) {
-      for(var i = 0 ; i < data.length; i++) {
-      if(data[i].ID > 101 && data[i].ID < 200){
+      <%if(data1.length) {
+      for(var i = 0 ; i < data1.length; i++) {
+      if(data1[i].ID > 101 && data1[i].ID < 200){
       %>
-      <button class="collapsible2">Camera <%=data[i].ID%></button>
+      <button class="collapsible2">Camera <%=data1[i].ID%></button>
       <div class="content">
-        <%for(var j = 0; j <data[i].currCapacity; j++) {%>
-        <p><%=data[j+i].fName%> <%=data[j+i].lName%></p>
+        <%for(var j = 0; j <data1[i].currCapacity; j++) {%>
+        <p><%=data1[j+i].fName%> <%=data1[j+i].lName%></p>
         <form action="/changeRoom" method="post" class="switchRoomForm">
-          <input type="hidden" name="CNP" value="<%=data[i].CNP%>">
-          <input type="hidden" name="username" value="<%=data[i].username%>">
-          <input type="hidden" name="oldroom" value="<%=data[i].roomNumber%>">
-          <input type="hidden" name="currC" value="<%=data[i].currCapacity%>">
-          <input type="hidden" name="maxC" value="<%=data[i].maxCapacity%>">
+          <input type="hidden" name="CNP" value="<%=data1[j+i].CNP%>">
+          <input type="hidden" name="username" value="<%=data1[j+i].username%>">
+          <input type="hidden" name="oldroom" value="<%=data1[j+i].roomNumber%>">
+          <input type="hidden" name="currC" value="<%=data1[j+i].currCapacity%>">
+          <input type="hidden" name="maxC" value="<%=data1[j+i].maxCapacity%>">
           <input type="text" name="newroom" placeholder="Switch to room...">
           <input type="submit" onclick="resetFunc()" value="submit">
         </form>
         <% } %>
-        <p><%=data[i].comments%></p>
+        <p><%=data1[i].comments%></p>
       </div>
-      <%} i = i + data[i].currCapacity - 1} } else {%>
+      <%} i = i + data1[i].currCapacity - 1} } else {%>
         <button class="collapsible2">NO CONTENT</button><%}%>
       <br>
     </div>
     <button class="collapsible">Etaj 2</button>
     <div class="content">
-      <%if(data.length) {
-      for(var i = 0 ; i < data.length; i++) {
-      if(data[i].ID > 200){
+      <%if(data1.length) {
+      for(var i = 0 ; i < data1.length; i++) {
+      if(data1[i].ID > 200){
       %>
-      <button class="collapsible2">Camera <%=data[i].ID%></button>
+      <button class="collapsible2">Camera <%=data1[i].ID%></button>
       <div class="content">
-        <%for(var j = 0; j < data[i].currCapacity; j++){%>
-        <p><%=data[j+i].fName%> <%=data[j+i].lName%></p>
+        <%for(var j = 0; j < data1[i].currCapacity; j++){%>
+        <p><%=data1[j+i].fName%> <%=data1[j+i].lName%></p>
         <form action="/changeRoom" method="post" class="switchRoomForm">
-          <input type="hidden" name="CNP" value="<%=data[i].CNP%>">
-          <input type="hidden" name="username" value="<%=data[i].username%>">
-          <input type="hidden" name="oldroom" value="<%=data[i].roomNumber%>">
-          <input type="hidden" name="currC" value="<%=data[i].currCapacity%>">
-          <input type="hidden" name="maxC" value="<%=data[i].maxCapacity%>">
+          <input type="hidden" name="CNP" value="<%=data1[j+i].CNP%>">
+          <input type="hidden" name="username" value="<%=data1[j+i].username%>">
+          <input type="hidden" name="oldroom" value="<%=data1[j+i].roomNumber%>">
+          <input type="hidden" name="currC" value="<%=data1[j+i].currCapacity%>">
+          <input type="hidden" name="maxC" value="<%=data1[j+i].maxCapacity%>">
           <input type="text" name="newroom" placeholder="Switch to room...">
           <input type="submit" onclick="resetFunc()" value="submit">
         </form>
         <%}%>
-        <p><%=data[i].comments%></p>
+        <p><%=data1[i].comments%></p>
       </div>
-      <%} } } else {%>
+      <%} i = i + data1[i].currCapacity - 1} } else {%>
         <button class="collapsible2">NO CONTENT</button><%}%>
+      <br>
     </div>
 
   </div>
@@ -111,7 +113,20 @@
     </form>
     <br>
     <h3>Previous News</h3>
-
+    <%if(data2.length) {
+        for(var i = 0; i < data2.length; i++){
+          %>
+          <p><%=data2[i].datePosted%></p>
+          <p><%=data2[i].text%></p>
+          <form action="/delNews" method="post">
+            <input type="hidden" name="ID" value="<%=data2[i].id%>">
+            <input type="submit" value="Remove">
+          </form>
+        <%
+        }
+    } else {%>
+      <p>NO CONTENT</p>
+    <%}%>
   </div>
 </div>
 

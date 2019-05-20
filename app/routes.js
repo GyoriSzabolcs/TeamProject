@@ -62,6 +62,7 @@ module.exports = function (app, passport) {
     app.post('/manageRequests', dbstuff.addResponse);
     app.post('/removeMsg', dbstuff.removeMsg);
     app.get('/indexAdmin.ejs', dbstuff.getRooms);
+    app.post('/delNews', dbstuff.delNews);
     app.post('/changeRoom', dbstuff.changeRoom);
     app.post('/postNews', dbstuff.postNews);
 }

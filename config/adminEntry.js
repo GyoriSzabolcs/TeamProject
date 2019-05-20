@@ -74,7 +74,6 @@ exports.dbInsert = function(req, res){
     const code = req.body.facCode;
     if(cnp.length != 13 || !/^[0-9]+$/.test(cnp)){
         console.log("bad cnp");
-        //req.flash('insertMessage', 'bad cnp');
         res.redirect("/addStudent.ejs");
         return;
 
@@ -168,16 +167,20 @@ exports.removeMsg = function (req, res) {
 exports.getRooms = function (req, res) {
     conn.query("SELECT s.fName, s.lName, s.CNP, u.roomNumber, u.username, r.* FROM rooms r, students s, users u WHERE s.CNP = u.CNP AND u.roomNumber = r.ID ORDER BY r.ID ASC",
         function (err, rows) {
+            var rooms = rows;
             if(err)
                 console.log("Error displaying from table: students, users, rooms");
-                res.render('indexAdmin', {page_title:"Home", data: rows});
+            conn.query("SELECT * FROM news", (err, rows) => {
+                if(err)
+                    console.log("Error displaying data from table: news");
+                res.render('indexAdmin', {page_title:"Home", data1: rooms, data2: rows});
+            })
+
         });
 }
 exports.changeRoom = function(req, res){
-    const CNP = req.body.CNP;
     const usr = req.body.username;
     const currC = req.body.currC;
-    const maxC = req.body.maxC;
     const oldR = req.body.oldroom;
     const newR = req.body.newroom;
     console.log(currC + " " + oldR + " " + newR + " " + usr);
@@ -244,6 +247,20 @@ exports.postNews = function (req, res) {
         } else
         {
             console.log("Post successful");
+            res.redirect('/indexAdmin.ejs');
+        }
+    })
+}
+exports.delNews = function (req, res) {
+    const id = req.body.ID;
+    conn.query("DELETE FROM news WHERE id = ?", [id], (err) => {
+        if(err){
+            console.log("Error deleting from table: news");
+            console.log(err);
+            res.redirect('/indexAdmin.ejs');
+        } else
+        {
+            console.log("Delete successful");
             res.redirect('/indexAdmin.ejs');
         }
     })
